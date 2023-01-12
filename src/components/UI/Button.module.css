@@ -1,0 +1,19 @@
+button {
+  max-width: max-content;
+  border: none;
+  background-color: #ccc;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: #8b2d2d;
+  color: #fff;
+  transition: background 250ms ease;
+}
+
+button:hover,
+button:active {
+  background-color: #a33737;
+}

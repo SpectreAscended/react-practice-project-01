@@ -3,8 +3,7 @@ import Button from '../UI/Button';
 import Card from '../UI/Card';
 import styles from './Input.module.css';
 
-const Input = () => {
-  const [newUser, setNewUser] = useState({});
+const Input = props => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
   const [isValid, setIsValid] = useState(true);
@@ -13,11 +12,14 @@ const Input = () => {
     e.preventDefault();
     if (enteredUsername.length === 0 || enteredAge < 1) setIsValid(false);
 
-    setNewUser({
+    const newUser = {
       userName: enteredUsername,
       age: enteredAge,
-      id: crypto.randomUUID(),
-    });
+    };
+
+    props.addUser(newUser);
+    setEnteredUsername('');
+    setEnteredAge('');
   };
 
   const usernameInputHandler = e => {
@@ -28,8 +30,6 @@ const Input = () => {
   const ageInputHandler = e => {
     setEnteredAge(e.target.value);
   };
-
-  console.log(newUser);
 
   return (
     <Card>

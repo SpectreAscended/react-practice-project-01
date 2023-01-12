@@ -21,7 +21,13 @@ const App = () => {
     },
   ]);
 
-  const userListHandler = newUser => {
+  const userListHandler = newUserData => {
+    const newUser = {
+      userName: newUserData.userName,
+      age: newUserData.age,
+      id: crypto.randomUUID(),
+    };
+
     setUserList(users => {
       return [newUser, ...users];
     });

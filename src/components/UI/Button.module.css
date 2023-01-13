@@ -1,4 +1,4 @@
-button {
+.button {
   max-width: max-content;
   border: none;
   background-color: #ccc;
@@ -13,7 +13,7 @@ button {
   transition: background 250ms ease;
 }
 
-button:hover,
-button:active {
+.button:hover,
+.button:active {
   background-color: #a33737;
 }

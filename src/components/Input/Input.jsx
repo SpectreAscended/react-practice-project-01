@@ -10,7 +10,18 @@ const Input = props => {
 
   const submitFormHandler = e => {
     e.preventDefault();
-    if (enteredUsername.length === 0 || enteredAge < 1) setIsValid(false);
+    if (enteredUsername.trim().length === 0) {
+      props.modal("Username can't be empty.");
+      return;
+    }
+
+    if (enteredAge.trim().length === 0) {
+      props.modal("Age can't be empty.");
+      return;
+    } else if (enteredAge < 1) {
+      props.modal('Age must be greater than 0.');
+      return;
+    }
 
     const newUser = {
       userName: enteredUsername,
@@ -42,13 +53,7 @@ const Input = props => {
           value={enteredUsername}
         />
         <label htmlFor="">Age (Years)</label>
-        <input
-          type="number"
-          onChange={ageInputHandler}
-          value={enteredAge}
-          min="1"
-          step="1"
-        />
+        <input type="number" onChange={ageInputHandler} value={enteredAge} />
         <Button type="submit">Add User</Button>
       </form>
     </Card>

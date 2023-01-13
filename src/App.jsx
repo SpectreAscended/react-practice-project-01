@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Input from './components/Input/Input';
 import UserList from './components/UserList/UserList';
+import Modal from './components/UI/Modal';
 
 const App = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Something went wrong');
   const [userList, setUserList] = useState([
     {
       userName: 'Cory',
@@ -32,10 +35,19 @@ const App = () => {
       return [newUser, ...users];
     });
   };
+  console.log(errorMessage);
+  console.log(modalOpen);
+
+  const modalHandler = message => {
+    setModalOpen(open => !open);
+    setErrorMessage(message);
+    console.log('clicked');
+  };
 
   return (
     <>
-      <Input addUser={userListHandler} />
+      {modalOpen && <Modal modal={modalHandler}>{errorMessage}</Modal>}
+      <Input addUser={userListHandler} modal={modalHandler} />
       <UserList users={userList} />
     </>
   );

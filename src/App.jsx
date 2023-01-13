@@ -35,20 +35,26 @@ const App = () => {
       return [newUser, ...users];
     });
   };
-  console.log(errorMessage);
-  console.log(modalOpen);
 
   const modalHandler = message => {
     setModalOpen(open => !open);
     setErrorMessage(message);
-    console.log('clicked');
+  };
+
+  const deleteUsersHandler = id => {
+    console.log('delete users clicked', id);
+    setUserList(users => {
+      return users.filter(user => user.id !== id);
+    });
   };
 
   return (
     <>
       {modalOpen && <Modal modal={modalHandler}>{errorMessage}</Modal>}
       <Input addUser={userListHandler} modal={modalHandler} />
-      <UserList users={userList} />
+      {userList.length > 0 && (
+        <UserList users={userList} onDelete={deleteUsersHandler} />
+      )}
     </>
   );
 };
